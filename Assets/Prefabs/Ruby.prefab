@@ -103,13 +103,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b52c09a51aa7b46a361af55b447e82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 4.5
   maxHealth: 5
   timeInvincible: 2
   scoreAmount: 0
   cogs: 4
+  potionAmount: 0
   scoreText: {fileID: 0}
   cogsText: {fileID: 0}
+  potionText: {fileID: 0}
   winText: {fileID: 0}
   winTextTwo: {fileID: 0}
   loseText: {fileID: 0}
@@ -127,6 +129,7 @@ MonoBehaviour:
   collectedClip: {fileID: 8300000, guid: 5d3c26bce04a75e46a27a840064a6baf, type: 3}
   ammoClip: {fileID: 8300000, guid: 1d3ac6ba143e99d42a5b868fdb9eba2f, type: 3}
   frogClip: {fileID: 8300000, guid: df53483e6ef1987469092b74f4b05e0c, type: 3}
+  bubbleClip: {fileID: 8300000, guid: 7a563c7a56a593a46843ebdb0ae4d260, type: 3}
 --- !u!50 &1941670902430941229
 Rigidbody2D:
   serializedVersion: 4

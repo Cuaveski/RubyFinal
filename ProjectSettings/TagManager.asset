@@ -9,6 +9,7 @@ TagManager:
   - RubyController
   - Ammo
   - Jambi
+  - Potion
   layers:
   - Default
   - TransparentFX
