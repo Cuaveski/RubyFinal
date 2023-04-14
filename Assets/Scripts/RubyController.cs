@@ -218,12 +218,12 @@ public class RubyController : MonoBehaviour
     {
         scoreAmount = scoreAmount + amount;
         scoreText.text = "Fixed Robots: " + scoreAmount + "/" + totalRobots;
-        if (scoreAmount == 4 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main"))
+        if (scoreAmount == 4)
         {
             winText.SetActive(true);
             gameOver = true;
 
-            if (scoreAmount == 4 && potionAmount == 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
+            if (scoreAmount == 4 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
             {
                 winTextTwo.SetActive(true);
                 winText.SetActive(false);
