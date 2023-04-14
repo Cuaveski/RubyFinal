@@ -13,6 +13,7 @@ public class RubyController : MonoBehaviour
     public float timeInvincible = 2.0f;
 
 
+
     public int health { get { return currentHealth; } }
     int currentHealth;
 
@@ -58,6 +59,7 @@ public class RubyController : MonoBehaviour
     public AudioClip ammoClip;
     public AudioClip talkClip;
     public AudioClip bubbleClip;
+    public AudioClip spiderClip;
 
 
     bool gameOver = false;
@@ -77,7 +79,7 @@ public class RubyController : MonoBehaviour
 
         scoreText.text = "Fixed Robots: " + scoreAmount + "/" + totalRobots;
         cogsText.text = "Cogs: " + cogs;
-        waterText.text = "Water: " + waterAmount + "/" + waterTotal;
+        waterText.text = "Water: " + waterAmount.ToString() + "/" + waterTotal;
 
         cogs = 4;
 
@@ -157,6 +159,11 @@ public class RubyController : MonoBehaviour
                         character.DisplayDialog();
                         PlaySound(talkClip);
                     }
+                    else if (scoreAmount < 4 && character != null && GameObject.FindWithTag("Spider"))
+                    {
+                        character.DisplayDialog();
+                        PlaySound(spiderClip);
+                    }
                 }
             }
         }
@@ -195,7 +202,6 @@ public class RubyController : MonoBehaviour
         else if (amount > 0)
         {
             Instantiate(healthParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
@@ -218,12 +224,12 @@ public class RubyController : MonoBehaviour
     {
         scoreAmount = scoreAmount + amount;
         scoreText.text = "Fixed Robots: " + scoreAmount + "/" + totalRobots;
-        if (scoreAmount == 4)
+        if (scoreAmount == 4 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Main"))
         {
             winText.SetActive(true);
             gameOver = true;
 
-            if (scoreAmount == 4 && waterAmount == 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
+            if (scoreAmount == 4 && waterAmount == waterTotal && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
             {
                 winTextTwo.SetActive(true);
                 winText.SetActive(false);
@@ -236,6 +242,20 @@ public class RubyController : MonoBehaviour
                 audioSource.Play();
             }
         }
+    }
+
+    public void ChangeSpeed()
+    {
+        animator.SetTrigger("Hit");
+        speed = 2;
+
+            if (isInvincible)
+                return;
+
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+            PlaySound(hitClip);
+            Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
     }
 
     void Launch()
@@ -265,8 +285,8 @@ public class RubyController : MonoBehaviour
 
         if (collision.collider.tag == "Potion")
         {
-            waterAmount += 1;
-            waterText.text = "Water: " + waterAmount + "/" + waterTotal;
+            waterAmount = waterAmount + 1;
+            waterText.text = "Water: " + waterAmount.ToString() + "/" + waterTotal;
             PlaySound(bubbleClip);
 
             Destroy(collision.collider.gameObject);
