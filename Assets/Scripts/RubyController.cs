@@ -11,6 +11,7 @@ public class RubyController : MonoBehaviour
 
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
+    public float timeSlow = 2.0f;
 
 
 
@@ -33,6 +34,8 @@ public class RubyController : MonoBehaviour
 
     bool isInvincible;
     float invincibleTimer;
+    bool isSlow;
+    float slowTimer;
 
 
     Rigidbody2D rigidbody2d;
@@ -88,6 +91,7 @@ public class RubyController : MonoBehaviour
         loseText.SetActive(false);
 
         isInvincible = false;
+        isSlow = false;
 
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
@@ -137,6 +141,13 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
         }
 
+        if (isSlow)
+        {
+            slowTimer += Time.deltaTime;
+            if (slowTimer < 0)
+                isSlow = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.C) && cogs >= 1)
         {
             Launch();
@@ -158,11 +169,6 @@ public class RubyController : MonoBehaviour
                     {
                         character.DisplayDialog();
                         PlaySound(talkClip);
-                    }
-                    else if (scoreAmount < 4 && character != null && GameObject.FindWithTag("Spider"))
-                    {
-                        character.DisplayDialog();
-                        PlaySound(spiderClip);
                     }
                 }
             }
@@ -244,10 +250,18 @@ public class RubyController : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed()
+    public void ChangeSpeed(int speed)
     {
-        animator.SetTrigger("Hit");
-        speed = 2;
+        if (speed < 4)
+        {
+            speed = 2;
+            animator.SetTrigger("Hit");
+
+            if (isSlow)
+                return;
+            
+            isSlow = true;
+            slowTimer = timeSlow;
 
             if (isInvincible)
                 return;
@@ -256,6 +270,7 @@ public class RubyController : MonoBehaviour
             invincibleTimer = timeInvincible;
             PlaySound(hitClip);
             Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        }
     }
 
     void Launch()
