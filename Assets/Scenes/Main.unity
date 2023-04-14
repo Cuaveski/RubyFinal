@@ -27272,6 +27272,11 @@ PrefabInstance:
       objectReference: {fileID: 1609912385}
     - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
         type: 3}
+      propertyPath: talkClip
+      value: 
+      objectReference: {fileID: 8300000, guid: df53483e6ef1987469092b74f4b05e0c, type: 3}
+    - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
+        type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 300394161}

@@ -20,11 +20,11 @@ public class RubyController : MonoBehaviour
     public int scoreAmount = 0;
     public static int totalRobots = 4;
     public int cogs = 4;
-    public int potionAmount = 0;
-    public static int potionTotal = 5;
+    public int waterAmount = 0;
+    public static int waterTotal = 5;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI cogsText;
-    public TextMeshProUGUI potionText;
+    public TextMeshProUGUI waterText;
     public GameObject winText;
     public GameObject winTextTwo;
     public GameObject loseText;
@@ -56,7 +56,7 @@ public class RubyController : MonoBehaviour
     public AudioClip bgMusic;
     public AudioClip collectedClip;
     public AudioClip ammoClip;
-    public AudioClip frogClip;
+    public AudioClip talkClip;
     public AudioClip bubbleClip;
 
 
@@ -77,7 +77,7 @@ public class RubyController : MonoBehaviour
 
         scoreText.text = "Fixed Robots: " + scoreAmount + "/" + totalRobots;
         cogsText.text = "Cogs: " + cogs;
-        potionText.text = "Potions: " + potionAmount + "/" + potionTotal;
+        waterText.text = "Water: " + waterAmount + "/" + waterTotal;
 
         cogs = 4;
 
@@ -91,12 +91,12 @@ public class RubyController : MonoBehaviour
         string sceneName = currentScene.name;
 
 
-        potionText.enabled = false;
+        waterText.enabled = false;
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
         {
-            potionText.enabled = true;
-            potionAmount = 0;
+            waterText.enabled = true;
+            waterAmount = 0;
         }
     }
 
@@ -155,7 +155,7 @@ public class RubyController : MonoBehaviour
                     else if (scoreAmount < 4 && character != null)
                     {
                         character.DisplayDialog();
-                        PlaySound(frogClip);
+                        PlaySound(talkClip);
                     }
                 }
             }
@@ -223,7 +223,7 @@ public class RubyController : MonoBehaviour
             winText.SetActive(true);
             gameOver = true;
 
-            if (scoreAmount == 4 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
+            if (scoreAmount == 4 && waterAmount == 5 && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("SceneTwo"))
             {
                 winTextTwo.SetActive(true);
                 winText.SetActive(false);
@@ -265,8 +265,8 @@ public class RubyController : MonoBehaviour
 
         if (collision.collider.tag == "Potion")
         {
-            potionAmount += 1;
-            potionText.text = "Potions: " + potionAmount + "/" + potionTotal;
+            waterAmount += 1;
+            waterText.text = "Water: " + waterAmount + "/" + waterTotal;
             PlaySound(bubbleClip);
 
             Destroy(collision.collider.gameObject);
