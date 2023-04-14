@@ -11,7 +11,7 @@ public class SpeedDamageZone : MonoBehaviour
 
         if (controller != null)
         {
-            controller.ChangeSpeed(-2);
+            controller.ChangeSpeed();
         }
     }
 }

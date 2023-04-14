@@ -269,27 +269,24 @@ public class RubyController : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed(int speed)
+    public void ChangeSpeed()
     {
-        if (speed < 4)
-        {
-            speed = 2;
-            animator.SetTrigger("Hit");
+        speed = 2;
+        animator.SetTrigger("Hit");
 
-            if (isSlow)
-                return;
+        if (isSlow)
+            return;
             
-            isSlow = true;
-            slowTimer = timeSlow;
+        isSlow = true;
+        slowTimer = timeSlow;
 
-            if (isInvincible)
-                return;
+        if (isInvincible)
+            return;
 
-            isInvincible = true;
-            invincibleTimer = timeInvincible;
-            PlaySound(hitClip);
-            Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-        }
+        isInvincible = true;
+        invincibleTimer = timeInvincible;
+        PlaySound(hitClip);
+        Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
     }
 
     void Launch()
