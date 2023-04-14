@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6284829538566807395}
   - component: {fileID: 5727509907161625258}
   - component: {fileID: 6332325348289831240}
+  - component: {fileID: 557566916357223739}
   m_Layer: 0
   m_Name: potions 1_120
   m_TagString: Potion
@@ -95,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0022132546, y: -0.000553295}
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.19130898, y: 0.21233466}
   m_EdgeRadius: 0
+--- !u!114 &557566916357223739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7954263029694120517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2720a98ec7e33e14897633c8119b55a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bubbleClip: {fileID: 8300000, guid: 7a563c7a56a593a46843ebdb0ae4d260, type: 3}
