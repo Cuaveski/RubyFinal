@@ -11,7 +11,10 @@ public class SpeedDamageZone : MonoBehaviour
 
         if (controller != null)
         {
-            controller.ChangeSpeed();
+            if (other.gameObject.CompareTag("RubyController"))
+            {
+                controller.HazardEnabled();
+            }
         }
     }
 }

@@ -7,12 +7,14 @@ using TMPro;
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
+    public int speedDecrease = 2;
 
 
     public int maxHealth = 5;
     public float timeInvincible = 2.0f;
-    public float timeSlow = 2.0f;
+    //public float timeSlow = 2.0f;
 
+    public bool isHazardEnabled = false;
 
 
     public int health { get { return currentHealth; } }
@@ -34,8 +36,8 @@ public class RubyController : MonoBehaviour
 
     bool isInvincible;
     float invincibleTimer;
-    bool isSlow;
-    float slowTimer;
+    //bool isSlow;
+    //float slowTimer;
 
 
     Rigidbody2D rigidbody2d;
@@ -90,7 +92,7 @@ public class RubyController : MonoBehaviour
         loseText.SetActive(false);
 
         isInvincible = false;
-        isSlow = false;
+        //isSlow = false;
 
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
@@ -140,12 +142,12 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
         }
 
-        if (isSlow)
-        {
-            slowTimer += Time.deltaTime;
-            if (slowTimer < 0)
-                isSlow = false;
-        }
+        //if (isSlow)
+        //{
+            //slowTimer += Time.deltaTime;
+            //if (slowTimer < 0)
+                //isSlow = false;
+        //}
 
         if (Input.GetKeyDown(KeyCode.C) && cogs >= 1)
         {
@@ -269,24 +271,38 @@ public class RubyController : MonoBehaviour
         }
     }
 
-    public void ChangeSpeed()
-    {
-        speed = 2;
-        animator.SetTrigger("Hit");
+    //public void ChangeSpeed()
+    //{
+        //speed = 2;
+        //animator.SetTrigger("Hit");
 
-        if (isSlow)
-            return;
+        //if (isSlow)
+            //return;
             
-        isSlow = true;
-        slowTimer = timeSlow;
+        //isSlow = true;
+        ///slowTimer = timeSlow;
 
-        if (isInvincible)
-            return;
+        //if (isInvincible)
+            //return;
 
-        isInvincible = true;
-        invincibleTimer = timeInvincible;
-        PlaySound(hitClip);
-        Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+        //isInvincible = true;
+        //invincibleTimer = timeInvincible;
+        //PlaySound(hitClip);
+        //Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+    //}
+
+    public void HazardEnabled()
+    {
+        isHazardEnabled = true;
+        speed /= speed;
+        StartCoroutine(HazardPowerDownRoutine());
+    }
+
+    IEnumerator HazardPowerDownRoutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        isHazardEnabled = false;
+        speed = 4.5f;
     }
 
     void Launch()
