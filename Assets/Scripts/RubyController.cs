@@ -66,6 +66,7 @@ public class RubyController : MonoBehaviour
 
 
     bool gameOver = false;
+    bool soundPlaying = false;
 
 
     // Start is called before the first frame update
@@ -267,17 +268,22 @@ public class RubyController : MonoBehaviour
     public void HazardEnabled()
     {
         animator.SetTrigger("Hit");
-        audioSource.PlayOneShot(smushClip);
-
         isHazardEnabled = true;
         speed /= speed;
         StartCoroutine(HazardPowerDownRoutine());
+
+        if (!soundPlaying)
+        {
+            soundPlaying = true;
+            audioSource.PlayOneShot(smushClip);
+        }
     }
 
     IEnumerator HazardPowerDownRoutine()
     {
         yield return new WaitForSeconds(3.5f);
         isHazardEnabled = false;
+        soundPlaying = false;
         speed = 4.5f;
     }
 
@@ -305,14 +311,5 @@ public class RubyController : MonoBehaviour
 
             Destroy(collision.collider.gameObject);
         }
-
-        //if (collision.collider.tag == "Potion")
-        //{
-            //waterAmount = waterAmount + 1;
-            //waterText.text = "Water: " + waterAmount.ToString() + "/" + waterTotal;
-            //PlaySound(bubbleClip);
-
-            //Destroy(collision.collider.gameObject);
-        //}
     }
 }
