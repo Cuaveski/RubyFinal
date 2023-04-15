@@ -36,8 +36,6 @@ public class RubyController : MonoBehaviour
 
     bool isInvincible;
     float invincibleTimer;
-    //bool isSlow;
-    //float slowTimer;
 
 
     Rigidbody2D rigidbody2d;
@@ -64,6 +62,7 @@ public class RubyController : MonoBehaviour
     public AudioClip ammoClip;
     public AudioClip talkClip;
     public AudioClip spiderClip;
+    public AudioClip smushClip;
 
 
     bool gameOver = false;
@@ -92,7 +91,8 @@ public class RubyController : MonoBehaviour
         loseText.SetActive(false);
 
         isInvincible = false;
-        //isSlow = false;
+        isHazardEnabled = false;
+
 
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
@@ -141,13 +141,6 @@ public class RubyController : MonoBehaviour
         {
             isInvincible = true;
         }
-
-        //if (isSlow)
-        //{
-            //slowTimer += Time.deltaTime;
-            //if (slowTimer < 0)
-                //isSlow = false;
-        //}
 
         if (Input.GetKeyDown(KeyCode.C) && cogs >= 1)
         {
@@ -271,28 +264,11 @@ public class RubyController : MonoBehaviour
         }
     }
 
-    //public void ChangeSpeed()
-    //{
-        //speed = 2;
-        //animator.SetTrigger("Hit");
-
-        //if (isSlow)
-            //return;
-            
-        //isSlow = true;
-        ///slowTimer = timeSlow;
-
-        //if (isInvincible)
-            //return;
-
-        //isInvincible = true;
-        //invincibleTimer = timeInvincible;
-        //PlaySound(hitClip);
-        //Instantiate(damageParticle, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-    //}
-
     public void HazardEnabled()
     {
+        animator.SetTrigger("Hit");
+        audioSource.PlayOneShot(smushClip);
+
         isHazardEnabled = true;
         speed /= speed;
         StartCoroutine(HazardPowerDownRoutine());
@@ -300,7 +276,7 @@ public class RubyController : MonoBehaviour
 
     IEnumerator HazardPowerDownRoutine()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.5f);
         isHazardEnabled = false;
         speed = 4.5f;
     }

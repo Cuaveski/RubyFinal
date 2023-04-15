@@ -27686,6 +27686,11 @@ PrefabInstance:
       objectReference: {fileID: 300394161}
     - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
         type: 3}
+      propertyPath: smushClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f8ff1e69c8742846b8e847cf1e86b3c, type: 3}
+    - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
+        type: 3}
       propertyPath: waterText
       value: 
       objectReference: {fileID: 1417076216}
@@ -27704,6 +27709,11 @@ PrefabInstance:
       propertyPath: winTextTwo
       value: 
       objectReference: {fileID: 162732539}
+    - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
+        type: 3}
+      propertyPath: isHazardEnabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3163760929016024102, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
         type: 3}
       propertyPath: m_Name
@@ -28069,6 +28079,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Web1
       objectReference: {fileID: 0}
+    - target: {fileID: 5048524286775218078, guid: bf98610a40dc2874a9b6e29f3737650c,
+        type: 3}
+      propertyPath: smushClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f8ff1e69c8742846b8e847cf1e86b3c, type: 3}
     - target: {fileID: 5048524286775218079, guid: bf98610a40dc2874a9b6e29f3737650c,
         type: 3}
       propertyPath: m_IsTrigger

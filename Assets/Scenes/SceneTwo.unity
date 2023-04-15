@@ -27224,6 +27224,11 @@ PrefabInstance:
       objectReference: {fileID: 1478571715}
     - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
         type: 3}
+      propertyPath: smushClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f8ff1e69c8742846b8e847cf1e86b3c, type: 3}
+    - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
+        type: 3}
       propertyPath: waterText
       value: 
       objectReference: {fileID: 1984438521}
@@ -27232,6 +27237,11 @@ PrefabInstance:
       propertyPath: potionText
       value: 
       objectReference: {fileID: 1984438521}
+    - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
+        type: 3}
+      propertyPath: spiderClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 198b4b655e6358d488d0b4a636fd0b83, type: 3}
     - target: {fileID: 3163760929016024097, guid: 46c90f3c21ad4264c97d8f8fcec5778b,
         type: 3}
       propertyPath: winTextTwo
